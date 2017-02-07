@@ -2,9 +2,7 @@
 
 class Popup {
 
-	constructor(element) {
-
-		if (!element) throw new Error('element is empty');
+	constructor() {
 
 		let popup = this._createPopup();
 		let closer = popup.querySelector('.closer');
@@ -90,4 +88,4 @@ class Popup {
 
 }
 
-let popup = new Popup(document.querySelector('body'));
+let popup = new Popup();
