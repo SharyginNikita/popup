@@ -20,12 +20,15 @@
 	cursor: default;
 	width: 600px;
 	height: 600px;
+	padding: 40px;
 	position: relative;
 	top: 25%;
 	background-color: #fff;
 
 	.content {
+		height: 100%;
 		display: flex;
+		background-color: #999;
 	}
 
 	.closer {
@@ -33,7 +36,8 @@
 		width: 30px;
 		height: 30px;
 		position: absolute;
-		right: 0px;
+		top: 5px;
+		right: 5px;
 		font-size: 24px;
 		font-weight: 900;
 		text-align: center;
