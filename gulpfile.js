@@ -7,6 +7,7 @@ const concatCss = require('gulp-concat-css');
 const babel = require('gulp-babel');
 const jsmin = require('gulp-jsmin');
 const sourcemaps = require('gulp-sourcemaps');
+const base64 = require('gulp-base64');
 
 gulp.task('default', [
 	'build-css',
@@ -22,6 +23,12 @@ gulp.task('build-css', () => {
 	gulp.src('./src/scss/*.scss')
 		.pipe(sourcemaps.init())
 		.pipe(sass())
+		.pipe(base64({
+			baseDir: 'src',
+			extensions: ['svg'],
+			maxImageSize: 8*1024, 
+			debug: true
+		}))
 		.pipe(autoprefixer())
 		.pipe(cleanCSS())
 		.pipe(rename({suffix: '.min'}))
