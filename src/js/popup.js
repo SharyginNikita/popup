@@ -2,89 +2,95 @@
 
 class Popup {
 
-	constructor() {
+    constructor() {
 
-		let popup = this._createPopup();
-		let closer = popup.querySelector('.closer');
-		let body = document.body;
+        let popup = this._createPopup();
+        let closer = popup.querySelector('.closer');
+        let body = document.body;
 
-		this._element = popup;
-		this._content = popup.querySelector('.content');
-		this._status = 'closed';
+        this._element = popup;
+        this._content = popup.querySelector('.content');
+        this._status = 'closed';
 
-		body.appendChild(popup);
+        body.appendChild(popup);
 
-		closer.addEventListener('click', (event) => {
+        closer.addEventListener('click', (event) => {
 
-			if (event.target === closer) this.close();
+            if (event.target === closer) this.close();
 
-		});
+        });
 
-		popup.addEventListener('click', (event) => {
+        popup.addEventListener('click', (event) => {
 
-			if (event.target === popup) this.close();
+            if (event.target === popup) this.close();
 
-		});
+        });
 
-	}
+        body.addEventListener('keydown', (event) => {
 
-	_createPopup() {
+            if (event.keyCode == '27') this.close();
 
-		let tmp = document.createElement('div');
+        });
 
-		let html = `
-			<div class="popup-shadow closed">
-				<div class="popup-window">
-					<div class="closer" onclick="popup.close();">x</div>
-					<div class="content"></div>
-				</div>
-			</div>
-		`;
+    }
 
-		tmp.innerHTML = html;
-		let popup = tmp.children[0];
+    _createPopup() {
 
-		return popup;
+        let tmp = document.createElement('div');
 
-	}
+        let html = `
+            <div class="popup-shadow closed">
+                <div class="popup-window">
+                    <div class="closer" onclick="popup.close();">x</div>
+                    <div class="content"></div>
+                </div>
+            </div>
+        `;
 
-	open() {
+        tmp.innerHTML = html;
+        let popup = tmp.children[0];
 
-		let body = document.body;
-		body.style.overflow = 'hidden';
-		this._element.classList.remove('closed');
-		this._element.classList.add('opened');
-		this._status = 'opened';
+        return popup;
 
-	}
+    }
 
-	close() {
+    open() {
 
-		let body = document.body;
-		body.style.overflow = '';
-		this._element.classList.remove('opened');
-		this._element.classList.add('closed');
-		this._status = 'closed';
+        let body = document.body;
+        body.style.overflow = 'hidden';
+        this._element.classList.remove('closed');
+        this._element.classList.add('opened');
+        this._status = 'opened';
 
-	}
+    }
 
-	insertData(data) {
+    close() {
 
-		this._content.innerHTML = data;
+        let body = document.body;
+        body.style.overflow = '';
+        this._element.classList.remove('opened');
+        this._element.classList.add('closed');
+        this._status = 'closed';
 
-	}
+    }
 
-	getData() {
+    insertData(data) {
 
-		return this._content.innerHTML;
+        this._content.innerHTML = data;
 
-	}
+    }
 
-	getStatus() {
+    getData() {
 
-		return this._status;
+        return this._content.innerHTML;
 
-	}
+    }
+
+    getStatus() {
+
+        return this._status;
+
+    }
 
 }
 
