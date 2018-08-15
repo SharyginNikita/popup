@@ -1,67 +1,67 @@
 .popup-shadow.closed {
 
-	display: none;
+    display: none;
 
 }
 
 .popup-shadow.opened {
 
-	cursor: pointer;
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 99;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: rgba(0,0,0,.7);
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.7);
 
 }
 
 .popup-window {
 
-	cursor: default;
-	max-width: 90vw;
-	min-width: 300px;
-	max-height: 90vh;
-	min-height: 200px;
-	padding: 10px;
-	position: relative;
-	display: flex;
-	align-content: stretch;
-	align-items: stretch;
-	box-sizing: border-box;
-	background-color: transparent;
+    cursor: default;
+    max-width: 90vw;
+    min-width: 300px;
+    max-height: 90vh;
+    min-height: 200px;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    align-content: stretch;
+    align-items: stretch;
+    box-sizing: border-box;
+    background-color: transparent;
 
-	.content {
+    .content {
 
-		width: 100%;
-		overflow-y: auto;
-		overflow-x: hidden;
-		background-color: #fff;
-		box-shadow: 0px 0px 10px 0px #000;
+        width: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px 0px #000;
 
-	}
+    }
 
-	.closer {
+    .closer {
 
-		cursor: pointer;
-		width: 20px;
-		height: 20px;
-		position: absolute;
-		top: 0px;
-		right: 0px;
-		color: transparent;
-		border-radius: 15px;
-		border: 1px solid #fff;
-		background-image: url(/images/exit.svg);
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
-		background-position: center;
-		box-shadow: 0px 0px 3px 1px #000;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        color: transparent;
+        border-radius: 15px;
+        border: 1px solid #fff;
+        background-image: url("../images/exit.svg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: center;
+        box-shadow: 0px 0px 3px 1px #000;
 
-	}
+    }
 
 }

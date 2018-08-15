@@ -1,5 +1,7 @@
 'use strict';
 
+import _ from '../scss/styles.scss';
+
 class Popup {
 
     constructor() {
@@ -94,4 +96,4 @@ class Popup {
 
 }
 
-let popup = new Popup();
+export default new Popup();

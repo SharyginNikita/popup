@@ -1,49 +1,45 @@
 const gulp = require('gulp');
-const sass = require('gulp-sass');
-const rename = require('gulp-rename');
-const cleanCSS = require('gulp-clean-css');
-const autoprefixer = require('gulp-autoprefixer');
-const concatCss = require('gulp-concat-css');
-const babel = require('gulp-babel');
-const jsmin = require('gulp-jsmin');
-const sourcemaps = require('gulp-sourcemaps');
-const base64 = require('gulp-base64');
+const webpack = require('webpack-stream');
+const named = require('vinyl-named');
 
-gulp.task('default', [
-	'build-css',
-	'build-js',
-]);
+gulp.task('build', done => {
+    gulp.src('./src/js/*.js')
+        .pipe(named())
+        .pipe(webpack({
+            mode: "development",
+            devtool: 'inline-source-map',
+            module: {
+                rules: [
+                    {
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        loader: "babel-loader"
+                    },
+                    {
+                        test: /\.(svg|png|jpg|gif)$/i,
+                        use: [
+                            {
+                                loader: 'url-loader',
+                                options: {
+                                    limit: 8192
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        test: /\.scss$/,
+                        use: [
+                            "style-loader", // creates style nodes from JS strings
+                            "css-loader", // translates CSS into CommonJS
+                            "sass-loader" // compiles Sass to CSS, using Node Sass by default
+                        ]
+                    }
+                ]
+            }
+        }))
+        .pipe(gulp.dest('./dest'))
 
-gulp.task('watch', () => {
-	gulp.watch('./src/scss/*.scss', ['build-css']);
-	gulp.watch('./src/js/*.js', ['build-js']);
+    done();
 });
 
-gulp.task('build-css', () => {
-	gulp.src('./src/scss/*.scss')
-		.pipe(sourcemaps.init())
-		.pipe(sass())
-		.pipe(base64({
-			baseDir: 'src',
-			extensions: ['svg'],
-			maxImageSize: 8*1024, 
-			debug: true
-		}))
-		.pipe(autoprefixer())
-		.pipe(cleanCSS())
-		.pipe(rename({suffix: '.min'}))
-		.pipe(sourcemaps.write('maps'))
-		.pipe(gulp.dest('./public'))
-});
-
-gulp.task('build-js', () => {
-	gulp.src('./src/js/*.js')
-		.pipe(sourcemaps.init())
-		.pipe(babel({
-			presets: ['latest']
-		}))
-		.pipe(jsmin())
-		.pipe(rename({suffix: '.min'}))
-		.pipe(sourcemaps.write('maps'))
-		.pipe(gulp.dest('./public'))
-});
+gulp.task('default', gulp.series('build'));
