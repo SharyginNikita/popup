@@ -43,7 +43,7 @@ class Popup {
         let html = `
             <div class="popup-shadow closed">
                 <div class="popup-window">
-                    <div class="closer" onclick="popup.close();">x</div>
+                    <div class="closer">x</div>
                     <div class="content"></div>
                 </div>
             </div>
@@ -82,9 +82,22 @@ class Popup {
 
     }
 
+    insertElement(elem) {
+
+        this._content.innerHTML = '';
+        this._content.appendChild(elem);
+
+    }
+
     getData() {
 
         return this._content.innerHTML;
+
+    }
+
+    getContent() {
+
+        return this._content;
 
     }
 
