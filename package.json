@@ -1,5 +1,5 @@
 {
-  "name": "popup.js",
+  "name": "popup",
   "version": "1.0.0",
   "description": "-",
   "main": "dest/popup.js",
